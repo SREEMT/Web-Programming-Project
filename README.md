@@ -3,6 +3,7 @@
 **Assignment:** EnrgTrack is a web-based application designed to help users track and analyze stocks within the U.S. energy sector. The project is being developed incrementally as part of the CS 456 – Web Programming course.
 
 **Professor:** Henrique Rocha
+
 **Developers:** Alberto Perches and Justin Dorsey
 
 ---
