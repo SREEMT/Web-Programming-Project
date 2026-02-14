@@ -1,0 +1,90 @@
+:root {
+    --primary-color: #3B5BB1;
+    --secondary-color: #5FC75D;
+    --background-color: #0F052D; 
+    --header-background-color: #203671;
+    --input-color: #36868F;
+    --text-color: #fff;
+    --text-secondary-color: #ACA4A4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header-top {
+    background-color: var(--header-background-color);
+}
+
+.logo img {
+    width: 200px;
+}
+
+.header-bottom {
+    display: flex;
+    justify-content: center;
+}
+
+.header-bottom nav ul {
+    display: flex;
+}
+
+
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-radius: 40px !important;
+    padding: 5px 25px 8px !important;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color) !important;
+    border-radius: 40px !important;
+    padding: 5px 25px 8px !important;
+}
+
+.search-bar form {
+    width: 450px;
+}
+
+.search-bar form input {
+    background-color: var(--input-color);
+    padding-left: 40px;
+}
+
+.search-bar form input:focus {
+    background-color: var(--input-color);
+    padding-left: 50px;
+}
+
+.search-bar form ::placeholder {
+    color: var(--text-color);
+}
+
+.search-bar form input:focus::placeholder {
+    color: transparent;
+}
+
+.search-bar img {
+    width: 25px;
+    height: 25px;
+    left: 40px;
+}
+
+.notification-icon img {
+    width: 25px;
+}
