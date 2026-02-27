@@ -1,0 +1,67 @@
+/* Gruvbox Dark Theme */
+[data-bs-theme="dark"] {
+    --bs-body-bg: #928374;
+    --bs-body-color: #ebdbb2;
+    --bs-secondary-bg: #282828;
+    --bs-tertiary-bg: #32302f;
+    --bs-border-color: #504945;
+    --bs-link-color: #83a598;
+    --bs-link-hover-color: #8ec07c;
+    --bs-primary: #458588;
+    --bs-success: #98971a;
+    --bs-danger: #cc241d;
+    --bs-warning: #d79921;
+    --radio-color: #D9D9D9;
+}
+
+body {
+    font-family: "Roboto", serif;
+}
+
+.card {
+    background-color: #282828;
+    border: 1px solid #504945;
+}
+
+.navbar {
+    background-color: #282828 !important;
+}
+
+.hero {
+    background-color: #32302f;
+    padding: 60px 20px;
+    border-radius: 12px;
+}
+
+.table {
+    --bs-table-bg: #282828;
+    --bs-table-border-color: #504945;
+}
+
+.stock-img img {
+    height: 450px;
+}
+
+form input.form-control,
+form textarea.form-control {
+    background-color: var(--bs-body-color);
+    color: var(--bs-border-color);
+}
+
+form textarea.form-control {
+    min-height: 150px;
+}
+
+form input.form-control::placeholder,
+form textarea.form-control::placeholder {
+    color: var(--bs-border-color);
+}
+
+form .radio-row input.form-check-input {
+    background-color: var(--radio-color);
+    border-color: var(--radio-color);
+}
+
+.btn-send {
+    background-color: var(--bs-tertiary-bg);
+}

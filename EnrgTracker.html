@@ -1,128 +1,179 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GruvStocks - Track Your Portfolio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GruvStocks - Track Your Portfolio</title>
 
-<!-- Bootstrap 5.3 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<style>
-/* Gruvbox Dark Theme */
-[data-bs-theme="dark"] {
-  --bs-body-bg: #928374;
-  --bs-body-color: #ebdbb2;
-  --bs-secondary-bg: #282828;
-  --bs-tertiary-bg: #32302f;
-  --bs-border-color: #504945;
-  --bs-link-color: #83a598;
-  --bs-link-hover-color: #8ec07c;
-  --bs-primary: #458588;
-  --bs-success: #98971a;
-  --bs-danger: #cc241d;
-  --bs-warning: #d79921;
-}
+  <!-- Roboto Font -->
 
-.card {
-  background-color: #282828;
-  border: 1px solid #504945;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
 
-.navbar {
-  background-color: #282828 !important;
-}
+  <link rel="stylesheet" href="style.css">
 
-.hero {
-  background-color: #32302f;
-  padding: 60px 20px;
-  border-radius: 12px;
-}
-
-.table {
-  --bs-table-bg: #282828;
-  --bs-table-border-color: #504945;
-}
-</style>
 </head>
 
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="#">EnrgTrack</a>
-    <div class="ms-auto d-flex align-items-center gap-3">
-      <div class="form-check form-switch">
-        <input class="formm-check-input" type="checkbox" id="localeToggle">
-        <label class="form-check-label small" for="localeToggle">ES</label>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">EnrgTrack</a>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="EnrgTracker.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="form.html">Form</a>
+          </li>
+        </ul>
       </div>
-
-      <button class="btn btn-outline-light btn-sm" id="loginBtn">Login</button>
-      <button class="btn btn-primary btn-sm ms-2" id="signupBtn">Sign Up</button>
-    </div>
-  </div>
-</nav>
-
-<div class="container my-5">
-
-  <!--  Hero Section  -->
-  <div class="hero text-center mb-5">
-    <h1 class="display-5 fw-bold" id="heroTitle">Track the Energy Market with Eaze&nbsp;&nbsp;</h1>
-    <p class="lead text-secondary" id="heroSubtitle">
-    Monitor stock an&nbsp; analyze performance — all in one place. </p>
-    <button class="btn btn-primary btn-lg mt-3">Get Started</button>
-</div>
-
-  <!--  Watchlist + Image Section  -->
-<div class="row mb-5">
-
-  <!-- LEFT SIDE: WATCHLIST -->
-  <div class="col-lg-7">
-    <div class="card p-4 h-100">
-      <h5 class="mb-3" id="watchlistTitle">US Energy Watchlist</h5>
-
-      <!-- Scrollable table wrapper -->
-      <div class="table-responsive" style="max-height: 420px; overflow-y: auto;">
-        <table class="table table-dark align-middle">
-          <thead>
-            <tr>
-              <th>Symbol</th>
-              <th>Company</th>
-              <th>Price</th>
-              <th>Change</th>
-              <th>%</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>XOM</td><td>Exxon Mobil</td><td>$108.42</td><td class="text-success">+1.12</td><td class="text-success">+1.04%</td></tr>
-            <tr><td>CVX</td><td>Chevron</td><td>$152.88</td><td class="text-danger">-0.94</td><td class="text-danger">-0.61%</td></tr>
-            <tr><td>SLB</td><td>Schlumberger</td><td>$49.37</td><td class="text-success">+0.55</td><td class="text-success">+1.13%</td></tr>
-            <tr><td>EOG</td><td>EOG Resources</td><td>$121.14</td><td class="text-success">+0.87</td><td class="text-success">+0.72%</td></tr>
-            <tr><td>OXY</td><td>Occidental Petroleum</td><td>$61.29</td><td class="text-danger">-0.48</td><td class="text-danger">-0.78%</td></tr>
-            <tr><td>MPC</td><td>Marathon Petroleum</td><td>$164.22</td><td class="text-success">+1.34</td><td class="text-success">+0.82%</td></tr>
-            <tr><td>PSX</td><td>Phillips 66</td><td>$143.90</td><td class="text-danger">-0.77</td><td class="text-danger">-0.53%</td></tr>
-            <tr><td>HAL</td><td>Halliburton</td><td>$36.12</td><td class="text-success">+0.21</td><td class="text-success">+0.58%</td></tr>
-            <tr><td>KMI</td><td>Kinder Morgan</td><td>$18.45</td><td class="text-success">+0.09</td><td class="text-success">+0.49%</td></tr>
-            <tr><td>DVN</td><td>Devon Energy</td><td>$47.83</td><td class="text-danger">-0.52</td><td class="text-danger">-1.07%</td></tr>
-            <tr><td>PXD</td><td>Pioneer Natural Resources</td><td>$251.14</td><td class="text-success">+2.18</td><td class="text-success">+0.87%</td></tr>
-            <tr><td>FANG</td><td>Diamondback Energy</td><td>$156.33</td><td class="text-success">+1.02</td><td class="text-success">+0.66%</td></tr>
-          </tbody>
-        </table>
+      <div class="ms-auto">
+        <button class="btn btn-outline-light btn-sm">Login</button>
+        <button class="btn btn-primary btn-sm ms-2">Sign Up</button>
       </div>
     </div>
-  </div>
+  </nav>
 
-  <!-- RIGHT SIDE: IMAGE PANEL -->
-  <div class="col-lg-5 mt-4 mt-lg-0">
-    <div class="card h-100 d-flex align-items-center justify-content-center p-4">
-      <img src="assets/imgs/energy_stock.jpg"
-           class="img-fluid rounded"
-           alt="Energy Market Image">
+
+  <div class="container my-5">
+
+    <!--  Hero Section  -->
+    <div class="hero text-center mb-5">
+      <h1 class="display-5 fw-bold">Track the Energy Market with Eaze&nbsp;&nbsp;</h1>
+      <p class="lead text-secondary">
+        Monitor stock an&nbsp; analyze performance — all in one place. </p>
+      <button class="btn btn-primary btn-lg mt-3">Get Started</button>
+    </div>
+
+    <!--  Watchlist + Image Section  -->
+    <div class="row mb-5">
+
+      <!-- LEFT SIDE: WATCHLIST -->
+      <div class="col-lg-7">
+        <div class="card p-4 h-100">
+          <h5 class="mb-3">US Energy Watchlist</h5>
+
+          <!-- Scrollable table wrapper -->
+          <div class="table-responsive" style="max-height: 420px; overflow-y: auto;">
+            <table class="table table-dark align-middle">
+              <thead>
+                <tr>
+                  <th>Symbol</th>
+                  <th>Company</th>
+                  <th>Price</th>
+                  <th>Change</th>
+                  <th>%</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>XOM</td>
+                  <td>Exxon Mobil</td>
+                  <td>$108.42</td>
+                  <td class="text-success">+1.12</td>
+                  <td class="text-success">+1.04%</td>
+                </tr>
+                <tr>
+                  <td>CVX</td>
+                  <td>Chevron</td>
+                  <td>$152.88</td>
+                  <td class="text-danger">-0.94</td>
+                  <td class="text-danger">-0.61%</td>
+                </tr>
+                <tr>
+                  <td>SLB</td>
+                  <td>Schlumberger</td>
+                  <td>$49.37</td>
+                  <td class="text-success">+0.55</td>
+                  <td class="text-success">+1.13%</td>
+                </tr>
+                <tr>
+                  <td>EOG</td>
+                  <td>EOG Resources</td>
+                  <td>$121.14</td>
+                  <td class="text-success">+0.87</td>
+                  <td class="text-success">+0.72%</td>
+                </tr>
+                <tr>
+                  <td>OXY</td>
+                  <td>Occidental Petroleum</td>
+                  <td>$61.29</td>
+                  <td class="text-danger">-0.48</td>
+                  <td class="text-danger">-0.78%</td>
+                </tr>
+                <tr>
+                  <td>MPC</td>
+                  <td>Marathon Petroleum</td>
+                  <td>$164.22</td>
+                  <td class="text-success">+1.34</td>
+                  <td class="text-success">+0.82%</td>
+                </tr>
+                <tr>
+                  <td>PSX</td>
+                  <td>Phillips 66</td>
+                  <td>$143.90</td>
+                  <td class="text-danger">-0.77</td>
+                  <td class="text-danger">-0.53%</td>
+                </tr>
+                <tr>
+                  <td>HAL</td>
+                  <td>Halliburton</td>
+                  <td>$36.12</td>
+                  <td class="text-success">+0.21</td>
+                  <td class="text-success">+0.58%</td>
+                </tr>
+                <tr>
+                  <td>KMI</td>
+                  <td>Kinder Morgan</td>
+                  <td>$18.45</td>
+                  <td class="text-success">+0.09</td>
+                  <td class="text-success">+0.49%</td>
+                </tr>
+                <tr>
+                  <td>DVN</td>
+                  <td>Devon Energy</td>
+                  <td>$47.83</td>
+                  <td class="text-danger">-0.52</td>
+                  <td class="text-danger">-1.07%</td>
+                </tr>
+                <tr>
+                  <td>PXD</td>
+                  <td>Pioneer Natural Resources</td>
+                  <td>$251.14</td>
+                  <td class="text-success">+2.18</td>
+                  <td class="text-success">+0.87%</td>
+                </tr>
+                <tr>
+                  <td>FANG</td>
+                  <td>Diamondback Energy</td>
+                  <td>$156.33</td>
+                  <td class="text-success">+1.02</td>
+                  <td class="text-success">+0.66%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE: IMAGE PANEL -->
+      <div class="col-lg-5 mt-4 mt-lg-0">
+        <div class="card h-100 d-flex align-items-center justify-content-center p-4">
+          <img src="assets/imgs/energy_stock.jpg" class="img-fluid rounded" alt="Energy Market Image">
+        </div>
+      </div>
+
     </div>
   </div>
-
-</div>
-<script type="module" src="scripts/locale_toggle.js"></script>
 </body>
+
 </html>
