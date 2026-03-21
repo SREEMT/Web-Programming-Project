@@ -1,0 +1,27 @@
+{
+  "name": "web-programming-project",
+  "version": "1.0.0",
+  "description": "**Assignment:** EnrgTrack is a web-based application designed to help users track and analyze stocks within the U.S. energy sector. The project is being developed incrementally as part of the CS 456 – Web Programming course.",
+  "main": "server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SREEMT/Web-Programming-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SREEMT/Web-Programming-Project/issues"
+  },
+  "homepage": "https://github.com/SREEMT/Web-Programming-Project#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

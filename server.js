@@ -1,0 +1,18 @@
+import express from "express"
+import path from "path";
+import fs from "fs";
+
+const app = express();
+const PORT = 3000;
+
+app.get("/watchlist", (req, res) => {
+    const jsonPath = path.join(process.cwd(), "data", "watchlist.json");
+    fs.readFile(jsonPath, "utf-8", (err, data) => {
+        if (err) return res.status(500).json({ error: "Could not read JSON" });
+        res.json(JSON.parse(data));
+    });
+});
+
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+});
