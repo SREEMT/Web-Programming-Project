@@ -23,5 +23,6 @@
   "homepage": "https://github.com/SREEMT/Web-Programming-Project#readme",
   "dependencies": {
     "express": "^5.2.1"
-  }
+  },
+  "type": "module"
 }
