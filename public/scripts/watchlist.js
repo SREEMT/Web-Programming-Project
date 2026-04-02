@@ -41,3 +41,7 @@ async function loadWatchlist() {
     console.error("Failed to load watchlist", err);
   }
 }
+
+
+// Create new stock with inputted info
+async function createStock(event) {}

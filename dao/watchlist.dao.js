@@ -1,6 +1,7 @@
 // Watchlist DAO, handles data for the web app
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
 const jsonPath = path.join(process.cwd(), "data", "watchlist.json");
 
@@ -10,6 +11,9 @@ function readJson() {
 }
 
 // write new data to watchlist.json
+function writeData(data) {
+    fs.writeFileSync(fileURLToPath, JSON.stringify(data, null, 2));
+}
 
 // GET all data, uses read data
 function getAll() {
@@ -17,9 +21,16 @@ function getAll() {
 }
 
 // POST new stock
+function newStock(item) {
+    const data = readJson();
+    const newItem = { id: Date.now(), ...item };
+    data.push(newItem);
+    writeData(data);
+    return newItem;
+}
 
 // UPDATE a stock
 
 // DELETE a stock
 
-export default { getAll };
+export default { getAll, newStock };

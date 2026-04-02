@@ -8,6 +8,10 @@ export default function WatchlistController(dao) {
         }
 
         // create new stock
+        postStock(req, res) {
+            const item = dao.create(req.body);
+            res.status(201).json(item);
+        }
 
         // update a stock
 

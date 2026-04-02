@@ -10,6 +10,7 @@ export default function WatchlistRoutes(app) {
     app.get("/watchlist", controller.getAll);
 
     // POST stock
+    app.post("/watchlist", controller.postStock);
 
     // UPDATE stock
 
