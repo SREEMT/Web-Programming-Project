@@ -13,6 +13,8 @@ export default function WatchlistRoutes(app) {
     app.post("/watchlist", controller.postStock);
 
     // UPDATE stock
+    // app.put("/watchlist/:symbol", controller.updateStock);
 
     // DELETE stock
+    app.delete("/watchlist/:symbol", controller.deleteStock);
 }

@@ -31,7 +31,27 @@ async function loadWatchlist() {
       const deleteBtn = document.createElement("button");
       deleteBtn.className = "btn btn-outline-danger";
       deleteBtn.textContent = "Delete";
-      // Add delete here
+
+      // Added listener for delete button that calls backend
+      // Similar structure to adding a new stock
+      deleteBtn.addEventListener("click", async () => {
+        try {
+          const deleteRes = await fetch(`/watchlist/${encodeURIComponent(stock.symbol)}`, {     // Get stock symbol component to delete specific stock
+            method: "DELETE",
+          });
+
+          if (!deleteRes.ok) {
+            const err = await deleteRes.json().catch(() => ({}));
+            throw new Error(err.error || "Could not delete stock");
+          }
+
+          // Refresh watchlist after deleting
+          await loadWatchlist();
+        } catch (err) {
+          console.error("delete stock failed", err);
+          alert("Failed to delete stock: " + err.message);
+        }
+      });
 
       actions.append(editBtn, deleteBtn);
       li.append(info, actions);

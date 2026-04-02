@@ -36,7 +36,26 @@ function newStock(item) {
 }
 
 // UPDATE a stock
+function updateStock(symbol, updatedStock) {
+    const data = readJson();
+    const newData = data.filter((s) => s.symbol !== symbol);
+
+    if (newData === -1) return null;
+
+    data[newData] = {...data[newData], ...updatedStock };
+    writeData(data);
+    return data[newData];
+}
 
 // DELETE a stock
+function deleteStock(symbol) {
+    const data = readJson();
+    const newData = data.filter((s) => s.symbol !== symbol);
 
-export default { getAll, newStock };
+    if (newData.length === data.length) return false;
+
+    writeData(newData);
+    return true;
+}
+
+export default { getAll, newStock, deleteStock };
