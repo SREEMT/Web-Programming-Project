@@ -5,8 +5,10 @@ import WatchlistRoutes from "./routes/watchlist.routes.js";
 const app = express();
 const PORT = 3000;
 
-// ✅ Serve everything in public folder
 app.use(express.static(path.join(process.cwd(), "public")));
+
+// Necessary to proces json inputs through server
+app.use(express.json());
 
 // API route
 /*

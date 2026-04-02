@@ -44,4 +44,82 @@ async function loadWatchlist() {
 
 
 // Create new stock with inputted info
-async function createStock(event) {}
+async function createStock() {
+  const symbolField = document.getElementById("symbol");
+  const companyField = document.getElementById("company");
+  const priceField = document.getElementById("price");
+
+  if (!symbolField || !companyField || !priceField) {
+    console.error("Modal elements missing: unable to create stock");
+    alert("Modal fields are not available. Refresh the page and try again.");
+    return;
+  }
+
+  const symbol = symbolField.value.trim();
+  const company = companyField.value.trim();
+  const price = parseFloat(priceField.value);
+
+  if (!symbol || !company || Number.isNaN(price) || price < 0) {
+    alert("Please enter valid symbol, company and a non-negative price.");
+    return;
+  }
+
+  const stock = { symbol, company, price };
+
+  // Retrieve POST stock from server with error checking for testing
+  try {
+    const res = await fetch("/watchlist", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(stock),
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to create stock");
+    }
+
+    // refresh list if passed and close modal
+    await loadWatchlist();
+    closeStockModal();
+  } catch (err) {
+    console.error("createStock failed", err);
+    alert("Could not create stock");
+  }
+}
+
+
+// https://www.javaspring.net/blog/is-it-possible-to-give-multiple-input-box-in-prompt-alert-in-javascript/
+// Had help from this to create a form screen since the default js input dialog does not support more than one inputs
+// without 3rd party library
+function openStockModal() {
+  document.getElementById("symbol").value = "";
+  document.getElementById("company").value = "";
+  document.getElementById("price").value = "";
+  document.getElementById("multiInputModal").classList.add("active");
+  document.getElementById("multiInputModal").setAttribute("aria-hidden", "false");
+}
+
+function closeStockModal() {
+  document.getElementById("multiInputModal").classList.remove("active");
+  document.getElementById("multiInputModal").setAttribute("aria-hidden", "true");
+}
+
+// Retrieve content from the modal
+window.addEventListener("DOMContentLoaded", () => {
+  const addStockBtn = document.getElementById("addStockBtn");
+  const cancelBtn = document.getElementById("cancelBtn");
+  const submitBtn = document.getElementById("submitBtn");
+  const modal = document.getElementById("multiInputModal");
+
+  if (addStockBtn) addStockBtn.addEventListener("click", openStockModal);
+  if (cancelBtn) cancelBtn.addEventListener("click", closeStockModal);
+  if (submitBtn) submitBtn.addEventListener("click", createStock);
+
+  if (modal) {
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeStockModal();
+      }
+    });
+  }
+});

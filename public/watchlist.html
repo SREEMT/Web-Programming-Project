@@ -11,12 +11,34 @@
   <div class="container py-4">
     <div class="d-flex align-items-center mb-3">
       <h2 class="me-3 mb-0">Watchlist</h2>
-      <button id="refreshBtn" class="btn btn-primary btn-sm">Load Watchlist</button>
+      <button id="refreshBtn" class="btn btn-primary btn-sm me-2">Load Watchlist</button>
+      <button id="addStockBtn" class="btn btn-success btn-sm">Add Stock</button>
     </div>
 
     <ul id="list" class="list-group list-group-flush bg-dark border rounded">
       <li class="list-group-item bg-dark text-secondary border-0">Click “Load Watchlist” to fetch items.</li>
     </ul>
+  </div>
+
+  <!-- Modal overlay for stock creation -->
+  <div id="multiInputModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-container">
+      <h3>Enter Your Stock Details</h3>
+      <div class="modal-inputs">
+        <label for="symbol">Symbol:</label>
+        <input type="text" id="symbol" required>
+
+        <label for="company">Company:</label>
+        <input type="text" id="company" required>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" step="0.01" min="0" required>
+      </div>
+      <div class="modal-buttons">
+        <button id="submitBtn" class="btn btn-primary btn-sm">Submit</button>
+        <button id="cancelBtn" class="btn btn-secondary btn-sm">Cancel</button>
+      </div>
+    </div>
   </div>
 
   <script src="scripts/watchlist.js"></script>

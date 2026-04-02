@@ -12,7 +12,7 @@ function readJson() {
 
 // write new data to watchlist.json
 function writeData(data) {
-    fs.writeFileSync(fileURLToPath, JSON.stringify(data, null, 2));
+    fs.writeFileSync(jsonPath, JSON.stringify(data, null, 2));
 }
 
 // GET all data, uses read data
@@ -23,7 +23,13 @@ function getAll() {
 // POST new stock
 function newStock(item) {
     const data = readJson();
-    const newItem = { id: Date.now(), ...item };
+    const newItem = {
+        symbol: item.symbol,
+        company: item.company,
+        price: item.price,
+        change: 0,
+        percent: 0
+    };
     data.push(newItem);
     writeData(data);
     return newItem;

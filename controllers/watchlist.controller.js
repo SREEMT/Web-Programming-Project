@@ -5,11 +5,11 @@ export default function WatchlistController(dao) {
         // GET all
         getAll(req, res) {
             res.json(dao.getAll());
-        }
+        },
 
         // create new stock
         postStock(req, res) {
-            const item = dao.create(req.body);
+            const item = dao.newStock(req.body);
             res.status(201).json(item);
         }
 
