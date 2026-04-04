@@ -1,25 +1,66 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Watchlist</title>
+  <!-- Roboto Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <!-- Booststrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-dark text-light">
-  <div class="container py-4">
-    <div class="d-flex align-items-center mb-3">
-      <h2 class="me-3 mb-0">Watchlist</h2>
-      <button id="refreshBtn" class="btn btn-primary btn-sm me-2">Load Watchlist</button>
-      <button id="addStockBtn" class="btn btn-success btn-sm">Add Stock</button>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">EnrgTrack</a>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="EnrgTracker.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="form.html">Form</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="watchlist.html">Watchlist</a>
+          </li>
+        </ul>
+      </div>
+      <div class="ms-auto d-flex align-items-center gap-3">
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="localeToggle">
+          <label class="form-check-label small" for="localeToggle">ES</label>
+        </div>
+        <button class="btn btn-outline-light btn-sm" id="loginBtn">Login</button>
+        <button class="btn btn-primary btn-sm ms-2" id="signupBtn">Sign Up</button>
+      </div>
     </div>
+  </nav>
 
-    <ul id="list" class="list-group list-group-flush bg-dark border rounded">
-      <li class="list-group-item bg-dark text-secondary border-0">Click “Load Watchlist” to fetch items.</li>
-    </ul>
-  </div>
+  <section id="watchlist">
+    <div class="container">
+      <div class="watchlist-content my-4 p-4 rounded-4">
+        <div class="d-flex align-items-center mb-3">
+          <h2 class="me-4 mb-0">US Energy Watchlist</h2>
+          <button id="refreshBtn" class="btn btn-primary btn-sm me-2">Load Watchlist</button>
+          <button id="addStockBtn" class="btn btn-success btn-sm">Add Stock</button>
+        </div>
 
+        <ul id="list" class="list-group list-group-flush bg-dark border rounded">
+          <li class="list-group-item bg-dark text-secondary border-0">Click “Load Watchlist” to fetch items.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
   <!-- Modal overlay for stock creation -->
   <div id="multiInputModal" class="modal-overlay" aria-hidden="true">
     <div class="modal-container">
@@ -41,9 +82,31 @@
     </div>
   </div>
 
+  <!-- Modal overlay for stock edit -->
+  <div id="multiEditModal" class="modal-overlay">
+    <div class="modal-container">
+      <h3>Edit Your Stock Details</h3>
+      <div class="modal-inputs">
+        <label for="symbol">Symbol:</label>
+        <input type="text" id="editsymbol" required>
+
+        <label for="company">Company:</label>
+        <input type="text" id="editcompany" required>
+
+        <label for="price">Price:</label>
+        <input type="number" id="editprice" step="0.01" min="0" required>
+      </div>
+      <div class="modal-buttons">
+        <button id="editSubmitBtn" type="submit" class="btn btn-primary btn-sm">Submit</button>
+        <button id="editCancelBtn" class="btn btn-secondary btn-sm">Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <script src="scripts/watchlist.js"></script>
   <script>
     document.getElementById("refreshBtn").addEventListener("click", loadWatchlist);
   </script>
 </body>
+
 </html>

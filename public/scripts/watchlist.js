@@ -1,3 +1,10 @@
+const editModal = document.getElementById("multiEditModal");
+const editSymbolField = document.getElementById("editsymbol");
+const editCompanyField = document.getElementById("editcompany");
+const editPriceField = document.getElementById("editprice");
+const editCancelBtn = document.getElementById("editCancelBtn");
+const editSubmitBtn = document.getElementById("editSubmitBtn");
+
 // Watchlist library for frontend
 
 // Loads watchlist from JSON
@@ -26,6 +33,9 @@ async function loadWatchlist() {
       editBtn.className = "btn btn-outline-warning";
       editBtn.textContent = "Edit";
       // Add edit here
+      editBtn.addEventListener("click", (event) => {
+        openEditModal(stock);
+      })
 
       // delete button assigned to each stock
       const deleteBtn = document.createElement("button");
@@ -107,6 +117,47 @@ async function createStock() {
   }
 }
 
+// Create new stock with inputted info
+async function editStock() {
+
+  if (!editSymbolField || !editCompanyField || !editPriceField) {
+    console.error("Modal elements missing: unable to create stock");
+    alert("Modal fields are not available. Refresh the page and try again.");
+    return;
+  }
+
+  const symbol = editSymbolField.value.trim();
+  const company = editCompanyField.value.trim();
+  const price = parseFloat(editPriceField.value);
+
+  if (!symbol || !company || Number.isNaN(price) || price < 0) {
+    alert("Please enter valid symbol, company and a non-negative price.");
+    return;
+  }
+
+  const stock = { symbol, company, price };
+
+  // Retrieve POST stock from server with error checking for testing
+  try {
+    const res = await fetch("/watchlist", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(stock),
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to edit stock");
+    }
+
+    // refresh list if passed and close modal
+    await loadWatchlist();
+    closeEditModal();
+  } catch (err) {
+    console.error("editStock failed", err);
+    alert("Could not edit stock");
+  }
+}
+
 
 // https://www.javaspring.net/blog/is-it-possible-to-give-multiple-input-box-in-prompt-alert-in-javascript/
 // Had help from this to create a form screen since the default js input dialog does not support more than one inputs
@@ -124,6 +175,25 @@ function closeStockModal() {
   document.getElementById("multiInputModal").setAttribute("aria-hidden", "true");
 }
 
+
+function openEditModal(stock) {
+  editSymbolField.value = stock.symbol;
+  editCompanyField.value = stock.company;
+  editPriceField.value = stock.price;
+
+  // to indentify unique symbol for each edit
+  editModal.dataset.originalSymbol = stock.symbol;
+  editModal.classList.add("active");
+  editModal.setAttribute("aria-hidden", "false");
+}
+
+function closeEditModal() {
+  editModal.classList.remove("active");
+  editModal.setAttribute("aria-hidden", "true");
+
+  delete editModal.dataset.originalSymbol;
+}
+
 // Retrieve content from the modal
 window.addEventListener("DOMContentLoaded", () => {
   const addStockBtn = document.getElementById("addStockBtn");
@@ -135,10 +205,21 @@ window.addEventListener("DOMContentLoaded", () => {
   if (cancelBtn) cancelBtn.addEventListener("click", closeStockModal);
   if (submitBtn) submitBtn.addEventListener("click", createStock);
 
+  if (editCancelBtn) editCancelBtn.addEventListener("click", closeEditModal);
+  if (editSubmitBtn) editSubmitBtn.addEventListener("click", editStock);
+
   if (modal) {
     modal.addEventListener("click", (event) => {
       if (event.target === modal) {
         closeStockModal();
+      }
+    });
+  }
+
+  if (editModal) {
+    editModal.addEventListener("click", (event) => {
+      if (event.target === editModal) {
+        closeEditModal();
       }
     });
   }

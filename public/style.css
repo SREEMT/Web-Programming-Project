@@ -17,7 +17,7 @@
 body {
     font-family: "Roboto", serif;
 }
-
+/* use variables color codes from the above */
 .card {
     background-color: #282828;
     border: 1px solid #504945;
@@ -122,4 +122,12 @@ form .radio-row input.form-check-input {
     justify-content: flex-end;
     gap: 10px;
     margin-top: 14px;
+}
+
+.watchlist-content {
+    background-color: var(--bs-secondary-bg);
+}
+
+.watchlist-content #list li {
+    font-size: 15px;
 }
