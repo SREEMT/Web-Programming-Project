@@ -126,6 +126,7 @@ async function editStock() {
     return;
   }
 
+  const originalSymbol = editModal.dataset.originalSymbol;
   const symbol = editSymbolField.value.trim();
   const company = editCompanyField.value.trim();
   const price = parseFloat(editPriceField.value);
@@ -137,16 +138,17 @@ async function editStock() {
 
   const stock = { symbol, company, price };
 
-  // Retrieve POST stock from server with error checking for testing
+  // Retrieve PUT stock from server with error checking for testing
   try {
-    const res = await fetch("/watchlist", {
+    const res = await fetch(`/watchlist/${encodeURIComponent(originalSymbol)}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(stock),
     });
 
     if (!res.ok) {
-      throw new Error("Failed to edit stock");
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || "Failed to edit stock");
     }
 
     // refresh list if passed and close modal
@@ -154,7 +156,7 @@ async function editStock() {
     closeEditModal();
   } catch (err) {
     console.error("editStock failed", err);
-    alert("Could not edit stock");
+    alert("Could not edit stock: " + err.message);
   }
 }
 
