@@ -56,7 +56,7 @@ async function updateStock(symbol, updatedStock) {
         { symbol: String(symbol).toUpperCase() },
         { $set: updates},
         {
-            new: true,
+            returnDocument: "after",
             runValidators: true
         }
     )
