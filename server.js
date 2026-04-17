@@ -1,12 +1,28 @@
 import express from "express";
 import path from "path";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
 import WatchlistRoutes from "./routes/watchlist.routes.js";
 
 const app = express();
 const PORT = 3000;
 
+dotenv.config();
+
 // Necessary to proces json inputs through server
 app.use(express.json());
+
+async function connectDB() {
+    try {
+        await mongoose.connect(process.env.DB_CONNECTION);
+        console.log("MongoDB connected successfully")
+    } catch (error) {
+        console.error("MongoDB connected failed.");
+        console.error(error.message);
+    }
+}
+
+connectDB();
 
 // Watchlist routes
 WatchlistRoutes(app);
