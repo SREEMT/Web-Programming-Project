@@ -105,7 +105,8 @@ async function createStock() {
     });
 
     if (!res.ok) {
-      throw new Error("Failed to create stock");
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || "Failed to create stock");
     }
 
     // refresh list if passed and close modal
@@ -113,7 +114,7 @@ async function createStock() {
     closeStockModal();
   } catch (err) {
     console.error("createStock failed", err);
-    alert("Could not create stock");
+    alert("Could not create stock: " + err.message);
   }
 }
 

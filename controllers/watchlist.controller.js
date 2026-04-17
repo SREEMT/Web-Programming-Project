@@ -64,18 +64,22 @@ export default function WatchlistController(dao) {
         },
 
         // update a stock
-        updateStock(req, res) {
+        async updateStock(req, res) {
             const symbol = req.params.symbol;
             if (!symbol) {
                 return res.status(400).json({ error: "Symbol parameter required" });
             }
 
-            const updated = dao.updateStock(symbol, req.body);
-            if (!updated) {
-                return res.status(404).json({ error: "Stock not found" });
-            }
+            try {
+                const updated = await dao.updateStock(symbol, req.body);
+                if (!updated) {
+                    return res.status(404).json({ error: "Stock not found" });
+                }
 
-            return res.json(updated);
+                return res.json(updated);
+            } catch (error) {
+                res.status(400).json({ error: error.message });
+            }
         },
 
         // delete a stock from list

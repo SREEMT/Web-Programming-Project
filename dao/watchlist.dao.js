@@ -22,8 +22,8 @@ async function newStock(item) {
         symbol: String(item.symbol).toUpperCase(),
         company: item.company,
         price: Number(item.price),
-        change: Number(item.change),
-        percent: Number(item.percent)
+        change: item.change !== undefined ? Number(item.change) : 0,
+        percent: item.percent !== undefined ? Number(item.percent) : 0
     });
 
     return formatStock(created.toObject());
@@ -41,15 +41,15 @@ async function updateStock(symbol, updatedStock) {
     }
 
     if(updatedStock.price !== undefined) {
-        updates.price = Number(updateStock.price);
+        updates.price = Number(updatedStock.price);
     }
 
     if(updatedStock.change !== undefined) {
-        updates.change = Number(updateStock.change);
+        updates.change = Number(updatedStock.change);
     }
 
     if(updatedStock.percent !== undefined) {
-        updates.percent = Number(updateStock.percent);
+        updates.percent = Number(updatedStock.percent);
     }
 
     const updated = await Watchlist.findOneAndUpdate(
